@@ -11,6 +11,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddSingleton<ICsvProcessor, CsvProcessor>();
+builder.Services.AddSingleton<IProcessingTracker, InMemoryProcessingTracker>();
 
 var app = builder.Build();
 
