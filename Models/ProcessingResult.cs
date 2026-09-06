@@ -1,10 +1,22 @@
-﻿namespace FileProcessingService.Models
+﻿using System.Diagnostics.Eventing.Reader;
+
+namespace FileProcessingService.Models
 {
     /// <summary>
     /// per file result
     /// </summary>
     public class ProcessingResult
     {
+        /// <summary>
+        /// if aggregated successfully
+        /// </summary>
+        public bool Succeeded { get; set; }
+        /// <summary>
+        /// why the processing failed
+        /// this will be mapped to a corresponding http status code
+        /// </summary>
+        public ProcessingErrorCode ErrorCode { get; set; } = ProcessingErrorCode.None;
+        public string? ErrorMessage { get; set; }
         /// <summary>
         /// Original Name of the uploaded file
         /// </summary>
