@@ -3,7 +3,8 @@
     public enum ProcessingErrorCode
     {
         None = 0,  
-        NoFileProcided,
+        Unauthorized,
+        NoFileProvided,
         EmptyFile,
         FileTooLarge,
         UnsupportedFileType,
