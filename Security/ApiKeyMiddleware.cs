@@ -35,7 +35,7 @@ namespace FileProcessingService.Security
             _next = next;
             _logger = logger;
             _expectedKey = configuration[ApiKeyPath] ?? string.Empty;
-            _headerName = configuration[HeaderNamePath] ?? string.Empty;
+            _headerName = configuration[HeaderNamePath] ?? DefaultHeaderName;
         }
 
         public async Task InvokeAsync(HttpContext context)
