@@ -1,6 +1,8 @@
 ﻿using FileProcessingService.Models;
 using System.Security.Cryptography;
 using System.Text;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace FileProcessingService.Security
 {
@@ -11,6 +13,11 @@ namespace FileProcessingService.Security
         public const string HeaderNamePath = "ApiKey:HeaderName";
 
         private const string DefaultHeaderName = "X-Api-Key";
+
+        private static readonly JsonSerializerOptions JsonOptions = new(JsonSerializerDefaults.Web)
+        {
+            Converters = { new JsonStringEnumConverter() }
+        };
 
         private static readonly string[] ExemptyPathPrefixes = { "/health", "/swagger" };
 

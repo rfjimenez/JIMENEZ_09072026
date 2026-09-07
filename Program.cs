@@ -1,11 +1,21 @@
+using FileProcessingService.Controllers;
 using FileProcessingService.Security;
 using FileProcessingService.Services;
+using Microsoft.AspNetCore.Http.Features;
+using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-builder.Services.AddControllers();
+//for the purpose of serializeing enums as names so error codes won't just display as a number but rather
+//displaying errorCode as strings (eg. "ColumnNotFound")
+builder.Services.AddControllers().
+    AddJsonOptions(options =>
+        options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter()));
+//Keeping the multipart limit alighed with the controller's own check so oversized uploaded files will be caught by a JSOn error rather than a framework exception
+builder.Services.Configure<FormOptions>(options =>
+    options.MultipartBodyLengthLimit = FilesController.MaxUploadBytes);
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
