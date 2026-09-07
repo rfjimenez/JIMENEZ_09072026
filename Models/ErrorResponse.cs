@@ -9,7 +9,7 @@
         /// <summary>
         /// Human readable explanation
         /// </summary>
-        public string Message { get; set; }
+        public string Message { get; set; } = string.Empty;
         /// <summary>
         /// Name of the file that was rejected upon upload
         /// </summary>
