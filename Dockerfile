@@ -5,7 +5,7 @@ WORKDIR /src
 COPY ["FileProcessingService.csproj", "./"]
 RUN dotnet restore "FileProcessingService.csproj"
 COPY . .
-RUN dotnet publish "FileProcessingService.csproj" -c $BUILD_CONFIGURATION -o /app/publish --no-restor /p:UseAppHost=false
+RUN dotnet publish "FileProcessingService.csproj" -c $BUILD_CONFIGURATION -o /app/publish --no-restore /p:UseAppHost=false
 
 # This stage is used to publish the service project to be copied to the final stage
 FROM build AS publish
