@@ -59,6 +59,17 @@ namespace FileProcessingService.Security
                 return;
             }
 
+            if (!IsValidKey(provided))
+            {
+                _logger.LogWarning(
+                    "Rejected {Method} {Path}: invalid API key.",
+                    context.Request.Method, context.Request.Path);
+                await WriteUnauthorizedAsync(
+                    context,
+                    StatusCodes.Status401Unauthorized,
+                    "Invalid API Key.");
+                return;
+            }
             await _next(context);
         }
 
