@@ -287,18 +287,13 @@ average of the `Amount` column is `618.50`). With the service running on
 curl http://localhost:8080/health
 
 # Upload without a key -> 401 Unauthorized
-curl -i -X POST "http://localhost:8080/api/files/upload?column=Amount" \
-  -F "file=@sample-data/transactions.csv"
+curl -i -X POST "http://localhost:8080/api/files/upload?column=Amount" -F "file=@sample-data/transactions.csv"
 
 # Upload with a wrong key -> 403 Forbidden
-curl -i -X POST "http://localhost:8080/api/files/upload?column=Amount" \
-  -H "X-Api-Key: wrong-key" \
-  -F "file=@sample-data/transactions.csv"
+curl -i -X POST "http://localhost:8080/api/files/upload?column=Amount" -H "X-Api-Key: wrong-key" -F "file=@sample-data/transactions.csv"
 
 # Upload with a correct key -> 200 OK, average 618.50
-curl -X POST "http://localhost:8080/api/files/upload?column=Amount" \
-  -H "X-Api-Key: api-key-for-demo" \
-  -F "file=@sample-data/transactions.csv"
+curl -X POST "http://localhost:8080/api/files/upload?column=Amount" -H "X-Api-Key: api-key-for-demo" -F "file=@sample-data/transactions.csv"
 
 # Report
 curl -H "X-Api-Key: api-key-for-demo" http://localhost:8080/api/reports

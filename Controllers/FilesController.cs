@@ -5,6 +5,8 @@ using Microsoft.AspNetCore.Mvc;
 namespace FileProcessingService.Controllers
 {
     //For accepting CSV uploads and returns an aggregate over a chosen column in the csv file
+    [ApiController]
+    [Route("api/files")]
     public class FilesController : ControllerBase
     {
         /// <summary>
