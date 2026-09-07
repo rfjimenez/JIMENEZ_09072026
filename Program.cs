@@ -39,9 +39,11 @@ if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
+    //redirecting would break every request.
+    app.UseHttpsRedirection();
 }
 
-app.UseHttpsRedirection();
+
 
 //insert middleware here making sure it never reacher controller when request unauthenticated
 app.UseMiddleware<ApiKeyMiddleware>();

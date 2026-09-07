@@ -1,0 +1,16 @@
+services:
+  fileprocessingservice:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: fileprocessingservice:latest
+    ports:
+      - "8080:8080"
+    environment:
+      #Configurationkeys nest with a double underscore in envt
+      #variables, so ApiKey__Value maps to ApiKey:Value path
+      #that ApiKeyMiddleware reads. A single underscore will not bind.
+      ApiKey__Value: ${ApiKey__Value:?ApiKey__Value must be set; copy .env.example to .env}
+      ApiKey__HeaderName: ${ApiKey__HeaderName:-X-Api-Key}
+      ASPNETCORE_ENVIRONMENT: ${ASPNETCORE_ENVIRONMENT:-Production}
+    restart: unless-stopped
