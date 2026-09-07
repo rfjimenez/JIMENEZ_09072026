@@ -19,7 +19,7 @@ namespace FileProcessingService.Security
             Converters = { new JsonStringEnumConverter() }
         };
 
-        private static readonly string[] ExemptyPathPrefixes = { "/health", "/swagger" };
+        private static readonly string[] ExemptPathPrefixes = { "/health", "/swagger" };
 
         private readonly RequestDelegate _next;
 
@@ -69,7 +69,7 @@ namespace FileProcessingService.Security
         /// <returns></returns>
         private static bool IsExempt(PathString path)
         {
-            return ExemptyPathPrefixes.Any(prefix =>
+            return ExemptPathPrefixes.Any(prefix =>
                 path.StartsWithSegments(prefix, StringComparison.OrdinalIgnoreCase));
         }
 
