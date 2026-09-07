@@ -296,7 +296,7 @@ curl -i -X POST "http://localhost:8080/api/files/upload?column=Amount" \
   -F "file=@sample-data/transactions.csv"
 
 # Upload with a correct key -> 200 OK, average 618.50
-curl -i -X POST "http://localhost:8080/api/files/upload?column=Amount" \
+curl -X POST "http://localhost:8080/api/files/upload?column=Amount" \
   -H "X-Api-Key: api-key-for-demo" \
   -F "file=@sample-data/transactions.csv"
 
