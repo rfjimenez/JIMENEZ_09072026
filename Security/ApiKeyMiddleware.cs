@@ -66,7 +66,7 @@ namespace FileProcessingService.Security
                     context.Request.Method, context.Request.Path);
                 await WriteUnauthorizedAsync(
                     context,
-                    StatusCodes.Status401Unauthorized,
+                    StatusCodes.Status403Forbidden,
                     "Invalid API Key.");
                 return;
             }
@@ -106,7 +106,7 @@ namespace FileProcessingService.Security
             {
                 Code = ProcessingErrorCode.Unauthorized,
                 Message = message
-            });
+            }, JsonOptions);
         }
     }
 }
